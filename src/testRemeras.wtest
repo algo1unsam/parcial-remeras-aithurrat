@@ -1,0 +1,61 @@
+import remeras.*
+import sucursal.*
+
+describe "varios" {
+
+	var negro
+	var blanco
+	var rojo
+	var disney
+	var remeraLisa1
+	var remeraLisa2
+	var remeraLisa3
+	var remeraLisa4
+	var remeraBordada1
+	var remeraBordada2
+	var remeraSublimada
+
+	fixture {
+		negro = new ColorBase()
+		blanco = new ColorBase()
+		rojo = new ColorEspecial()
+		disney = new Marca(derechos = 100)
+		remeraLisa1 = new Remera(talle = 40, color = negro)
+		remeraLisa2 = new Remera(talle = 42, color = negro)
+		remeraLisa3 = new Remera(talle = 40, color = rojo)
+		remeraLisa4 = new Remera(talle = 42, color = rojo)
+		remeraBordada1 = new Bordada(talle = 44, color = blanco, cantColores = 1)
+		remeraBordada2 = new Bordada(talle = 44, color = blanco, cantColores = 4)
+		remeraSublimada = new Sublimada(talle = 44, color = blanco, altura = 10, ancho = 15, marca = disney)
+	}
+
+	test "remera lisa talle 40 negra" {
+		assert.equals(80, remeraLisa1.costoRemera())
+	}
+
+	test "remera lisa talle 42 negra" {
+		assert.equals(100, remeraLisa2.costoRemera())
+	}
+
+	test "remera lisa talle 40 roja" {
+		assert.equals(88, remeraLisa3.costoRemera())
+	}
+
+	test "remera lisa talle 42 roja" {
+		assert.equals(110, remeraLisa4.costoRemera())
+	}
+
+	test "remera bordada talle 44 con un color" {
+		assert.equals(120, remeraBordada1.costoRemera())
+	}
+
+	test "remera bordada talle 44 con 4 colores" {
+		assert.equals(140, remeraBordada2.costoRemera())
+	}
+
+	test "remera sublimada talle 44 con marca disney" {
+		assert.equals(275, remeraSublimada.costoRemera())
+	}
+
+}
+
